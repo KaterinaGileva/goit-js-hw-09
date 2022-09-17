@@ -8,17 +8,12 @@ import "flatpickr/dist/flatpickr.min.css";
 const refs = {
 input: document.querySelector('#datetime-picker'),
 startBtn: document.querySelector('[data-start]'),
-timerFace: document.querySelector('.timer'),
-//label: document.querySelector('.label')
+
+days: document.querySelector('[data-days]'),
+hours: document.querySelector('[data-hours]'),
+minutes: document.querySelector('[data-minutes]'),
+seconds: document.querySelector('[data-seconds]')
 };
-
-refs.startBtn.setAttribute('disabled', '');
-
-let endTime = null;
-
-function addLeadingZero(value){
-  return String(value).padStart(2, '0');
-}
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -26,34 +21,34 @@ function convertMs(ms) {
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
-
   // Remaining days
-  const days = addLeadingZero(Math.floor(ms / day));
+  const days = Math.floor(ms / day);
   // Remaining hours
-  const hours = addLeadingZero(Math.floor((ms % day) / hour));
+  const hours = Math.floor((ms % day) / hour);
   // Remaining minutes
-  const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
+  const minutes = Math.floor(((ms % day) % hour) / minute);
   // Remaining seconds
-  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
-
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
   return { days, hours, minutes, seconds };
 }
-
+function pad(value){
+  return String(value).padStart(2, '0');
+}
 const options = {
     enableTime: true,
     time_24hr: true,
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-
       if(selectedDates[0] <= Date.now()) {
        Notify.failure('Please choose a date in the future');
       }  else {
-        refs.startBtn.removeAttribute('disabled');
+        refs.startBtn.disabled = false;
         endTime = selectedDates[0];
-      }  
+      }
    },
   };
+
 
   
 flatpickr(refs.input, options);
@@ -87,8 +82,11 @@ start() {
  
   updateClockface ({ days, hours, minutes, seconds }) {
 
-    refs.timerFace.textContent = `${days}:${hours}:${minutes}:${seconds}`;
-    
+    //refs.timerFace.textContent = `${days}:${hours}:${minutes}:${seconds}`;
+    refs.days.textContent = pad(days);
+    refs.hours.textContent = pad(hours);
+    refs.minutes.textContent = pad(minutes);
+    refs.seconds.textContent = pad(seconds);
     }
 };
 

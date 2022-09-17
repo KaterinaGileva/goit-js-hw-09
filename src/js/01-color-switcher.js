@@ -22,9 +22,7 @@ const timer = {
       const currentTime = Date.now();
       const deltaTime = currentTime-startTime;
       getRandomHexColor(deltaTime);
-      //const time = convertMs(deltaTime);
-      //updateClockface(time);
-     // console.log(`${days}:${hours}:${minutes}:${seconds}`);
+      
       }, 1000);
   },
   stop (){
