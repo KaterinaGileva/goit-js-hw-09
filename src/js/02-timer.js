@@ -15,6 +15,9 @@ minutes: document.querySelector('[data-minutes]'),
 seconds: document.querySelector('[data-seconds]')
 };
 
+ //refs.startBtn.setAttribute('disabled', '');
+ //let endTime = null;
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -49,8 +52,6 @@ const options = {
    },
   };
 
-
-  
 flatpickr(refs.input, options);
 
 class Timer {
@@ -59,13 +60,14 @@ constructor() {
   this.intervalId = null;
   this.isActive = false;
   refs.startBtn.disabled = true;
+  
 }
 
 start() {
   if (this.isActive) {
-      return;
+     return;
   }
-  
+  refs.startBtn.disabled = true;
   this.intervalId = setInterval(() => {
       const startTime = Date.now();
       const deltaTime = endTime - startTime;
@@ -82,14 +84,12 @@ start() {
  
   updateClockface ({ days, hours, minutes, seconds }) {
 
-    //refs.timerFace.textContent = `${days}:${hours}:${minutes}:${seconds}`;
     refs.days.textContent = pad(days);
     refs.hours.textContent = pad(hours);
     refs.minutes.textContent = pad(minutes);
     refs.seconds.textContent = pad(seconds);
     }
 };
-
 
 const timer = new Timer();
 refs.startBtn.addEventListener('click', () => timer.start());

@@ -1,10 +1,13 @@
 
 const refs = {
-startBtn: document.querySelector('button[data-start]'),
-stopBtn: document.querySelector('button[data-stop]')
+startBtn: document.querySelector('[data-start]'),
+stopBtn: document.querySelector('[data-stop]')
 }
 
-refs.startBtn.addEventListener('click', ()=>{timer.start();});
+refs.startBtn.addEventListener('click', 
+() => {
+  timer.start();
+});
 refs.stopBtn.addEventListener('click', ()=>{timer.stop();});
 
 
@@ -12,12 +15,13 @@ refs.stopBtn.addEventListener('click', ()=>{timer.stop();});
 const timer = {
   intervalId: null,
   isActive: false,
+  
   start() {
     if(this.isActive){
       return;
     }
       const startTime = Date.now();
-  this.isActive = true;
+      this.isActive = true;
       this.intervalId = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = currentTime-startTime;
@@ -25,6 +29,7 @@ const timer = {
       
       }, 1000);
   },
+
   stop (){
     clearInterval(this.intervalId);
     this.isActive = false;
