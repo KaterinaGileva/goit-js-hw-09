@@ -15,9 +15,6 @@ minutes: document.querySelector('[data-minutes]'),
 seconds: document.querySelector('[data-seconds]')
 };
 
- //refs.startBtn.setAttribute('disabled', '');
- //let endTime = null;
-
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -58,15 +55,15 @@ class Timer {
 
 constructor() {
   this.intervalId = null;
-  this.isActive = false;
+  //this.isActive = false;
   refs.startBtn.disabled = true;
   
 }
 
 start() {
-  if (this.isActive) {
-     return;
-  }
+  //if (this.isActive) {
+  //   return;
+  //}
   refs.startBtn.disabled = true;
   this.intervalId = setInterval(() => {
       const startTime = Date.now();
