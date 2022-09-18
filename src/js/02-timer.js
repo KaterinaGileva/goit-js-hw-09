@@ -5,7 +5,6 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // Додатковий імпорт стилів
 import "flatpickr/dist/flatpickr.min.css";
 
-let endTime = null;
 
 const refs = {
 input: document.querySelector('#datetime-picker'),
@@ -16,6 +15,10 @@ hours: document.querySelector('[data-hours]'),
 minutes: document.querySelector('[data-minutes]'),
 seconds: document.querySelector('[data-seconds]')
 };
+
+refs.startBtn.setAttribute('disabled', '');
+let endTime = null;
+
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
