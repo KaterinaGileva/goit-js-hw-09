@@ -5,6 +5,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // Додатковий імпорт стилів
 import "flatpickr/dist/flatpickr.min.css";
 
+let endTime = null;
+
 const refs = {
 input: document.querySelector('#datetime-picker'),
 startBtn: document.querySelector('[data-start]'),
@@ -43,10 +45,11 @@ const options = {
       if(selectedDates[0] <= Date.now()) {
        Notify.failure('Please choose a date in the future');
       }  else {
+
+        
+        refs.startBtn.disabled = false;
         endTime = selectedDates[0];
         console.log(`endTime ${endTime}`);
-        refs.startBtn.disabled = false;
-        
       }
    },
   };
@@ -68,6 +71,7 @@ start() {
   //}
   refs.startBtn.disabled = true;
   this.intervalId = setInterval(() => {
+    
       const startTime = Date.now();
       const deltaTime = endTime - startTime;
       const ms = convertMs(deltaTime);
