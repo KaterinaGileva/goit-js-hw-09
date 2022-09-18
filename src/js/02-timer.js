@@ -43,10 +43,10 @@ const options = {
       if(selectedDates[0] <= Date.now()) {
        Notify.failure('Please choose a date in the future');
       }  else {
-        refs.startBtn.disabled = false;
-        
         endTime = selectedDates[0];
         console.log(`endTime ${endTime}`);
+        refs.startBtn.disabled = false;
+        
       }
    },
   };
