@@ -44,7 +44,9 @@ const options = {
        Notify.failure('Please choose a date in the future');
       }  else {
         refs.startBtn.disabled = false;
+        
         endTime = selectedDates[0];
+        console.log(`endTime ${endTime}`);
       }
    },
   };
