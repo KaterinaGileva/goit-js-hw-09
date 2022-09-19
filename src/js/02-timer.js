@@ -49,7 +49,7 @@ const options = {
       }  else {
         refs.startBtn.disabled = false;
         endTime = selectedDates[0];
-        refs.input.disabled = true;
+        
       }
    },
   };
@@ -60,17 +60,13 @@ class Timer {
 
 constructor() {
   this.intervalId = null;
-  //this.isActive = false;
   refs.startBtn.disabled = true;
-  
 }
 
 start() {
-  //if (this.isActive) {
-  //   return;
-  //}
-  refs.startBtn.disabled = true;
-  this.intervalId = setInterval(() => {
+     refs.startBtn.disabled = true;
+     refs.input.disabled = true;
+     this.intervalId = setInterval(() => {
     
       const startTime = Date.now();
       const deltaTime = endTime - startTime;
