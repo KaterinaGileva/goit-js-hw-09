@@ -41,9 +41,8 @@ function createPromise(position, delay) {
   if (shouldResolve) {
     resolve ({position, delay});
   } else {
-     reject(() => console.log({position, delay}))
-     console.log(delay);
+     reject({position, delay}); 
   }
-  })
-})
+  }, delay);
+});
 };

@@ -16,9 +16,8 @@ minutes: document.querySelector('[data-minutes]'),
 seconds: document.querySelector('[data-seconds]')
 };
 
-refs.startBtn.setAttribute('disabled', '');
+refs.startBtn.disabled = true;
 let endTime = null;
-
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -48,11 +47,9 @@ const options = {
       if(selectedDates[0] <= Date.now()) {
        Notify.failure('Please choose a date in the future');
       }  else {
-
-        
         refs.startBtn.disabled = false;
         endTime = selectedDates[0];
-        console.log(`endTime ${endTime}`);
+        refs.input.disabled = true;
       }
    },
   };
